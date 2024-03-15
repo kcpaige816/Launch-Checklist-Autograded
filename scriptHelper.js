@@ -1,5 +1,3 @@
-// Write your helper functions here!
-
 require('cross-fetch/polyfill');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
@@ -19,12 +17,53 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  
  function validateInput(testInput) {
     
+    if (testInput === "") {
+        return "Empty"
+    } else if (isNaN(testInput)) {
+        return "Not a Number";
+    } else {
+        return "Is a Number";
+    }
  }
  
- function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
+
+    let isShuttleReady = true;
+    let pilotInput = document.getElementById("pilotName");
+    let copilotInput = document.getElementById("copilotName");
+    let pilotName = pilotInput.value;
+    let copilotName = copilotInput.value;
+    // validateInput(eachParameter);
     
+    if (fuelLevel < 10000) {
+        document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch";
+        isShuttleReady = false;
+    } else {
+        document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotName} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilotName} is ready for launch`; 
+    }
+
+    if (cargoMass > 10000) {
+        document.getElementById("cargoStatus").innerHTML = "Cargo mass too heavy for launch";
+        isShuttleReady = false;
+    } else {
+        document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotName} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilotName} is ready for launch`;
+    }
+
+    if (!isShuttleReady) {
+        document.getElementById("faultyItems").style.visibility = "visible";
+        document.querySelector("h2").style.color = "red";
+        document.querySelector("h2").innerHTML = "Shuttle Not Ready for Launch";
+    }  else {
+        document.querySelector("h2").style.color = "green";
+        document.querySelector("h2").innerHTML = "Shuttle is Ready for Launch";
+    }
+        return
  }
- 
+
  async function myFetch() {
      let planetsReturned;
  
