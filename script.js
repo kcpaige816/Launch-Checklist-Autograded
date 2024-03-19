@@ -1,10 +1,20 @@
-const { formSubmission } = require("./scriptHelper");
+// const { formSubmission } = require("./scriptHelper");
 
 // Write your JavaScript code here!
-formSubmission()
+formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass)
+
+pilot = document.querySelector(input[name="pilotName"]);
+copilot = document.querySelector(input[name="copilotName"]);
+list = document.getElementById("faultyItems");
+h2 = document.getElementById("launchStatus");
+pilotStatus = document.getElementById("pilotStatus");
+copilotStatus = document.getElementById("copilotStatus");
+fuelStatus = document.getElementById("fuelStatus");
+cargoStatus = document.getElementById("cargoStatus");
+
 
 window.addEventListener("load", function() {
-
+   
     let listedPlanets;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let listedPlanetsResponse;

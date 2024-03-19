@@ -27,21 +27,25 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  }
  
  function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
+    
+    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || 
+    validateInput(fuelLevel) === "Empty" || validateInput(cargoMass) === "Empty") {
+        alert('Missing Input - All Fields Required');
+    } else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number") {
+        alert("Invalid Input - Non-Numeric Values Required for Pilot and Co-pilot Fields.")
+    } else if (validateInput(fuelLevel) === "Not a Number" || validateInput(cargoMass) === "Not a Number") {
+        alert("Invalid Input - Numeric Values Required for Fuel and Cargo Fields.")
+    }// had an else statement to alert successful submission but test didn't like it
 
     let isShuttleReady = true;
-    let pilotInput = document.getElementById("pilotName");
-    let copilotInput = document.getElementById("copilotName");
-    let pilotName = pilotInput.value;
-    let copilotName = copilotInput.value;
-    // validateInput(eachParameter);
-    
+
     if (fuelLevel < 10000) {
         document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch";
         isShuttleReady = false;
     } else {
         document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
-        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotName} is ready for launch`;
-        document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilotName} is ready for launch`; 
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`; 
     }
 
     if (cargoMass > 10000) {
@@ -49,12 +53,12 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         isShuttleReady = false;
     } else {
         document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
-        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotName} is ready for launch`;
-        document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilotName} is ready for launch`;
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`;
     }
 
     if (!isShuttleReady) {
-        document.getElementById("faultyItems").style.visibility = "visible";
+        list.style.visibility = "visible";
         document.querySelector("h2").style.color = "red";
         document.querySelector("h2").innerHTML = "Shuttle Not Ready for Launch";
     }  else {
