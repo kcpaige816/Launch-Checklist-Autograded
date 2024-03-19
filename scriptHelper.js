@@ -36,6 +36,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     } else if (validateInput(fuelLevel) === "Not a Number" || validateInput(cargoMass) === "Not a Number") {
         alert("Invalid Input - Numeric Values Required for Fuel and Cargo Fields.")
     }
+    
     let isShuttleReady = true;
 
     if (fuelLevel < 10000) {
