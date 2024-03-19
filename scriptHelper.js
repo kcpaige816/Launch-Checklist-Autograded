@@ -35,7 +35,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         alert("Invalid Input - Non-Numeric Values Required for Pilot and Co-pilot Fields.")
     } else if (validateInput(fuelLevel) === "Not a Number" || validateInput(cargoMass) === "Not a Number") {
         alert("Invalid Input - Numeric Values Required for Fuel and Cargo Fields.")
-    }// had an else statement to alert successful submission but test didn't like it
+    }
 
     let isShuttleReady = true;
 
@@ -43,9 +43,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch";
         isShuttleReady = false;
     } else {
-        document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
-        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
-        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`; 
+        document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch"; 
     }
 
     if (cargoMass > 10000) {
@@ -53,17 +51,19 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         isShuttleReady = false;
     } else {
         document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
-        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
-        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`;
     }
 
     if (!isShuttleReady) {
         list.style.visibility = "visible";
         document.querySelector("h2").style.color = "red";
         document.querySelector("h2").innerHTML = "Shuttle Not Ready for Launch";
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`; 
     }  else {
         document.querySelector("h2").style.color = "green";
         document.querySelector("h2").innerHTML = "Shuttle is Ready for Launch";
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`; 
     }
         return
  }
