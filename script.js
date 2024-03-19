@@ -1,6 +1,3 @@
-// const { formSubmission } = require("./scriptHelper");
-
-const { pickPlanet } = require("./scriptHelper");
 
 formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass)
 
