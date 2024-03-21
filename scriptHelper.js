@@ -29,7 +29,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  }
  
  function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
-    
+
     if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || 
     validateInput(fuelLevel) === "Empty" || validateInput(cargoMass) === "Empty") {
         alert('Missing Input - All Fields Required');
@@ -65,8 +65,23 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         document.querySelector("h2").style.color = "green";
         document.querySelector("h2").innerHTML = "Shuttle is Ready for Launch"; 
     }
-        return
+      
  }
+
+
+// button.addEventListener("click", function () {
+    
+//     let myForm = document.getElementById("testForm"); //grab all info from form by id
+
+//     let list = document.getElementById("faultyItems");
+//     let pilot = document.getElementById("pilotName");
+//     let copilot = document.getElementById("copilotName");
+//     let fuelLevel = document.getElementById("fuelLevel");
+//     let cargoMass = document.getElementById("cargoMass");
+
+//     formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
+    
+// });
 
  async function myFetch() {
      let planetsReturned;
