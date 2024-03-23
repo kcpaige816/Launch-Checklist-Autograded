@@ -1,36 +1,34 @@
 
+window.addEventListener("load", function() {
 
-// formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass)
+    let listedPlanets;
 
-// pilot = document.querySelector(input[name="pilotName"]);
-// copilot = document.querySelector(input[name="copilotName"]);
-// list = document.getElementById("faultyItems");
-// h2 = document.getElementById("launchStatus");
-// pilotStatus = document.getElementById("pilotStatus");
-// copilotStatus = document.getElementById("copilotStatus");
-// fuelStatus = document.getElementById("fuelStatus");
-// cargoStatus = document.getElementById("cargoStatus");
+    let listedPlanetsResponse = myFetch();
 
-// window.addEventListener("load", function() {
-   
-//     let listedPlanets;
+    listedPlanetsResponse.then(function (result) {
 
-//     let listedPlanetsResponse = myFetch();
-
-//     listedPlanetsResponse.then(function (result) {
-//         listedPlanets = result;
-// ;
-//     }).then(function () {
+        listedPlanets = result;
+;
+    }).then(function () {
       
-//        let randomPlanet = pickPlanet(listedPlanets);
-//        addDestinationInfo(document, randomPlanet.name, randomPlanet.diameter, randomPlanet.star, randomPlanet.distance, 
-//         randomPlanet.moons, randomPlanet.imageUrl);
-//     }) 
+       const randomPlanet = pickPlanet(listedPlanets);
 
-//     button.addEventListener("click", function () { //grab all info from form by id
+       addDestinationInfo(document, randomPlanet.name, randomPlanet.diameter, randomPlanet.star, randomPlanet.distance, 
+        randomPlanet.moons, randomPlanet.image);
+    }) 
 
-//     //then call formSubmission that has the 4 inputs that need to be passed in. declare variable for each parameter here
-//    })
-//    event.preventDefault();
-    
-//  });
+    let form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+        let pilot = document.querySelector('input[name="pilotName"]').value
+        let copilot = document.querySelector('input[name="copilotName"]').value
+        let list = document.querySelector("#faultyItems");
+        let fuelLevel = document.querySelector('input[name="fuelLevel"]').value
+        let cargoMass = document.querySelector('input[name="cargoMass"]').value
+       
+       formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
+       event.preventDefault();
+ 
+ })
+
+});
